@@ -143,6 +143,7 @@ where
         &self,
         calls: Vec<(TransactionRequest, HashSet<TraceType>)>,
         block_id: Option<BlockId>,
+        time_stamp: Option<u64>,
     ) -> EthResult<Vec<TraceResults>> {
         let at = block_id.unwrap_or(BlockId::pending());
         let (cfg, block_env, at) = self.inner.eth_api.evm_env_at(at).await?;
@@ -157,10 +158,14 @@ where
 
                 let mut calls = calls.into_iter().peekable();
 
+                let mut bt = block_env.clone();
+                dbg!("info:: time stamp = " + bt.timestamp);
+                bt.timestamp = U256::from(time_stamp.unwrap());
+                dbg!("info:: time stamp = " + bt.timestamp);
                 while let Some((call, trace_types)) = calls.next() {
                     let env = prepare_call_env(
                         cfg.clone(),
-                        block_env.clone(),
+                        bt,
                         call,
                         gas_limit,
                         &mut db,
