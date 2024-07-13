@@ -588,9 +588,10 @@ where
         &self,
         calls: Vec<(TransactionRequest, HashSet<TraceType>)>,
         block_id: Option<BlockId>,
+        time_stamp: Option<u64>,
     ) -> Result<Vec<TraceResults>> {
         let _permit = self.acquire_trace_permit().await;
-        Ok(Self::trace_call_many(self, calls, block_id).await?)
+        Ok(Self::trace_call_many(self, calls, block_id, time_stamp).await?)
     }
 
     /// Handler for `trace_rawTransaction`
