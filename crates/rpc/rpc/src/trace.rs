@@ -165,7 +165,7 @@ where
                 while let Some((call, trace_types)) = calls.next() {
                     let env = prepare_call_env(
                         cfg.clone(),
-                        bt,
+                        bt.clone(),
                         call,
                         gas_limit,
                         &mut db,
