@@ -34,6 +34,7 @@ pub trait TraceApi {
         &self,
         calls: Vec<(TransactionRequest, HashSet<TraceType>)>,
         block_id: Option<BlockId>,
+        time_stamp: Option<u64>
     ) -> RpcResult<Vec<TraceResults>>;
 
     /// Traces a call to `eth_sendRawTransaction` without making the call, returning the traces.
