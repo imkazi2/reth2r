@@ -159,9 +159,9 @@ where
                 let mut calls = calls.into_iter().peekable();
 
                 let mut bt = block_env.clone();
-                dbg!("info:: time stamp = " + bt.timestamp);
+                println!("info:: time stamp = {:?}" + bt.timestamp);
                 bt.timestamp = U256::from(time_stamp.unwrap());
-                dbg!("info:: time stamp = " + bt.timestamp);
+                println!("info:: time stamp = {:?}" + bt.timestamp);
                 while let Some((call, trace_types)) = calls.next() {
                     let env = prepare_call_env(
                         cfg.clone(),
