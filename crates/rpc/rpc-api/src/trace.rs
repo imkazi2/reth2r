@@ -32,7 +32,7 @@ pub trait TraceApi {
     #[method(name = "callMany")]
     async fn trace_call_many(
         &self,
-        calls: Vec<(TransactionRequest, HashSet<TraceType>)>,
+        calls: Vec<(RR2TransactionRequest, HashSet<TraceType>)>,
         block_id: Option<BlockId>,
         time_stamp: Option<u64>
     ) -> RpcResult<Vec<TraceResults>>;
