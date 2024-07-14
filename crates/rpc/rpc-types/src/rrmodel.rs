@@ -1,3 +1,7 @@
+use alloy_primitives::{Address, ChainId, TxKind, B256, U256};
+use alloy_rpc_types::{AccessList, BlobTransactionSidecar, TransactionInput};
+use serde::{Deserialize, Serialize};
+
 /// Represents _all_ transaction requests to/from RPC.
 #[derive(Clone, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -54,8 +58,10 @@ pub struct RR2TransactionRequest {
     /// Blob sidecar for EIP-4844 transactions.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sidecar: Option<BlobTransactionSidecar>,
+    /// Enable create access list for transaction
     #[serde(default)]
     pub enable_access_list: bool,
+    /// Enable return logs for transaction
     #[serde(default)]
     pub enable_logs: bool,
 }
