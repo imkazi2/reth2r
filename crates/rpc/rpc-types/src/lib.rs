@@ -55,3 +55,4 @@ pub use eth::{
 
 pub use peer::*;
 pub use rpc::*;
+pub mod rrmodel;
